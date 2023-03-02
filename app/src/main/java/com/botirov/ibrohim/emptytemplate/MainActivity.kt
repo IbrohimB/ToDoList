@@ -2,6 +2,7 @@ package com.botirov.ibrohim.emptytemplate
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.botirov.ibrohim.emptytemplate.databinding.ActivityMainBinding
@@ -15,6 +16,19 @@ class MainActivity : AppCompatActivity(), TaskItemClickListener {
         super.onCreate(savedInstanceState)
         binding=ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val drawerLayout=binding.drawerLayout
+        val imgMenu= binding.imgMenu
+
+        val navView= binding.navDawar
+        navView.itemIconTintList=null
+        imgMenu.setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
+
+
+
+
         taskViewModel=ViewModelProvider(this).get(TaskViewModel::class.java)
         binding.newTaskButton.setOnClickListener {
             NewTaskSheet(null).show(supportFragmentManager,"newTaskTag")
