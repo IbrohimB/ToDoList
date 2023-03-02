@@ -4,6 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.botirov.ibrohim.emptytemplate.databinding.ActivityMainBinding
 
@@ -24,6 +28,14 @@ class MainActivity : AppCompatActivity(), TaskItemClickListener {
         navView.itemIconTintList=null
         imgMenu.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
+        }
+        val navController = Navigation.findNavController(this,R.id.fragment)
+        NavigationUI.setupWithNavController(navView,navController)
+
+        val textTitle= binding.title
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            textTitle.text = destination.label
+
         }
 
 
