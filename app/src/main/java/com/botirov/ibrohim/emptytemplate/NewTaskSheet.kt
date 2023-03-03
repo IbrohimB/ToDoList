@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import com.botirov.ibrohim.emptytemplate.databinding.FragmentNewTaskSheetBinding
@@ -50,6 +51,8 @@ class NewTaskSheet(var taskItem: TaskItem?): BottomSheetDialogFragment(){
         binding.timePickerButton.setOnClickListener {
             openTimePicker()
         }
+
+        getDialog()?.getWindow()?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
